@@ -1,0 +1,97 @@
+module Grammatic
+module Grammar
+
+grammar BudgeteerGrammar
+  rule transaction
+    spaces? exchange description? <Exchange>
+    /
+    spaces? transfer description? <Transfer>
+    /
+    spaces? deposit  description? <Deposit>
+    /
+    spaces? expense  description? <Expense>
+  end
+
+  rule expense
+    account? tags debit
+  end
+
+  rule deposit
+    account? tags credit
+  end
+
+  rule transfer
+    from:account to:account amount
+  end
+
+  rule exchange
+    from:account to:account sell:amount buy:amount
+  end
+
+  rule account
+    account_identifier word spaces?
+  end
+
+  rule spaces
+    ' '+
+  end
+
+  rule tags
+    (tag spaces?)+
+  end
+
+  rule tag
+    word
+  end
+
+  rule debit
+    minus_sign? amount installments?
+  end
+
+  rule minus_sign
+    '-' spaces?
+  end
+
+  rule installments
+    spaces? '/' spaces? integer
+  end
+
+  rule credit
+    plus_sign amount
+  end
+
+  rule plus_sign
+    '+' spaces?
+  end
+
+  rule amount
+    integer spaces?
+  end
+
+  rule description
+    (spaces? word spaces?)+
+  end
+
+  rule account_identifier
+    '@'
+  end
+
+  rule word
+    letter (letter / integer / symbol)*
+  end
+
+  rule integer
+    [0-9]+
+  end
+
+  rule letter
+    [a-z]
+  end
+
+  rule symbol
+    '_' / '-'
+  end
+end
+
+end
+end
