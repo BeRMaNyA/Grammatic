@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-include Grammatic::Grammar
-
-Treetop.load 'grammar/budgeteer'
-
 describe "Budgeteer's grammar" do
   before(:all) do
     @parser = BudgeteerGrammarParser.new

@@ -3,21 +3,21 @@ module Grammar
 
 grammar BudgeteerGrammar
   rule transaction
-    spaces? exchange description? <Exchange>
+    spaces? exchange description:description? <Exchange>
     /
-    spaces? transfer description? <Transfer>
+    spaces? transfer description:description? <Transfer>
     /
-    spaces? deposit  description? <Deposit>
+    spaces? deposit  description:description? <Deposit>
     /
-    spaces? expense  description? <Expense>
+    spaces? expense  description:description? <Expense>
   end
 
   rule expense
-    account? tags debit
+    account:account? tags debit
   end
 
   rule deposit
-    account? tags credit
+    account:account? tags credit
   end
 
   rule transfer
