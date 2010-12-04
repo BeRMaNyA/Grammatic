@@ -1,0 +1,15 @@
+= GRAMMATIC. Parse and Recognize expressions for Buggeteer
+
+Grammatic is a simple gem that recognize and parse expressions for budgeteer depending of treetop grammatic.
+Each time that you call the method parse you will get a json with all parts of that string
+or you get an exception when the expression is not valid.
+
+    require 'grammatic'
+    Grammatic.parse("@savings super food 100 some groceries for tonight")
+    #=> { :account => "@savings", :tags => "super food", :amount => 100, :description => "some grozeries for tonight" }
+
+    Grammatic.parse("invalid expression")
+    #=> Grammatic::InvalidExpression: The expression is not valid
+
+= INSTALL
+    gem install grammatic
