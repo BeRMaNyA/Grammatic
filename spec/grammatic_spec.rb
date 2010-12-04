@@ -50,4 +50,10 @@ describe "Grammatic" do
       end
     end
   end
+
+  it "should catch exceptions while proccess the expressions" do
+    lambda do
+      Grammatic.parse("invalid expression")
+    end.should raise_error(Grammatic::InvalidExpression)
+  end
 end
