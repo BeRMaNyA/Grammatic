@@ -46,6 +46,9 @@ module Grammatic
     end
 
     class Exchange < Transaction
+      def to_json
+        { :from => format_output(exchange.from), :to => format_output(exchange.to), :sell => format_output(exchange.sell, :integer), :buy => format_output(exchange.buy, :integer) }
+      end
     end
   end
 

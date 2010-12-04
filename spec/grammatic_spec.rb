@@ -41,4 +41,13 @@ describe "Grammatic" do
       end
     end
   end
+
+  describe Exchange do
+    describe "giving a valid expression" do
+      it "should recognize all the parts of that string" do
+        parts = Grammatic.parse("@savings_in_dollars @savings_in_pesos 100 2225 so we have some pesos to spend")
+        parts.should == { :from => "@savings_in_dollars", :to => "@savings_in_pesos", :sell => 100, :buy => 2225, :description => "so we have some pesos to spend" }
+      end
+    end
+  end
 end
