@@ -18,13 +18,14 @@ module Grammatic
 
       text_value = result.text_value
 
-      if type == :string
-        text_value.squeeze(" ").strip
-      elsif type == :integer
-        text_value.to_i
-      else
-        raise CantReturnFormattedOutput, "can't return a formatted output"
-      end
+      return case type
+        when :string
+          text_value.squeeze(" ").strip
+        when :integer
+          text_value.to_i
+        end
+
+      raise CantReturnFormattedOutput, "can't return a formatted output"
     end
 
     # Helper method to detect if the element has description
@@ -76,7 +77,7 @@ module Grammatic
   # #=> { :account => @savings, :tags => "super food", :ammount => 100, :description => "some groceries for tonight" }
 
   def self.parse(expression)
-    Treetop.load 'grammar/budgeteer'
+    Treetop.load File.expand_path('grammar/budgeteer')
 
     parser = BudgeteerGrammarParser.new
     result = parser.parse(expression)
