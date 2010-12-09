@@ -1,7 +1,7 @@
 = GRAMMATIC. Parse and Recognize expressions for Budgeteer
 
 Grammatic is a simple gem that recognize different types of grammatic for budgeteer and parse them.
-Each time that you call the method 'parse' you will get a json with all parts of that string
+Each time that you call the method 'parse' you will get a hash with all parts of that string
 or you get an exception when the expression is not valid.
 
     require 'grammatic'
